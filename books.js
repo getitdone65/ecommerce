@@ -15,8 +15,6 @@ function renderBooks() {
             books.sort((a, b) => b.rating - a.rating);
         }
 
-         console.log(ratingHTML)
-
     const booksHtml = books
     .map((book) => {
       return `
@@ -31,8 +29,12 @@ function renderBooks() {
       ${ratingHTML(book.rating)}
     </div>
     <div class="book__price">
-      <span>$${book.originalPrice.toFixed(2)}</span>
-    </div>
+  ${
+    book.salePrice
+      ? `<span class="book__price--normal">$${book.originalPrice.toFixed(2)}</span> $${book.salePrice.toFixed(2)}`
+      : `$${book.originalPrice.toFixed(2)}`
+  }
+</div>
     </div>
     `;
     })
